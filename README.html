@@ -1,6 +1,6 @@
 <!doctype html><html lang="fr"><head><meta charset="utf-8"></head><body> 
  <h1>dodo</h1>
-<p>Like a list of tasks of an extinct species...</p>
+<p>Like a list of tasks of a rare extinct species...</p>
 <p><strong>A CLI app</strong> in Go with SQLite.</p>
 <h2>Overview</h2>
 <p>dodo allows the user the following functions to manage their tasks.</p>
@@ -11,6 +11,19 @@
 <li>Deleting task</li>
 <li>...</li>
 </ul>
+<p>just do it ;)</p>
+<h2>Install</h2>
+<p>Check dependencies</p>
+<ul>
+<li>cobra : go get -u github.com/spf13/cobra/cobra</li>
+<li>viper : go get -u github.com/spf13/viper</li>
+<li>go-sqlite: go get github.com/mattn/go-sqlite3</li>
+</ul>
+<p>You need a $GOBIN at go install !!! otherwise you have problems with db connection.</p>
+<p>see:</p>
+<pre><code class="language-bash">export GOBIN=$HOME/go/bin
+source .bash_profile
+</code></pre>
 <h2>Licenses</h2>
 <ul>
 <li><a href="https://golang.org/LICENSE">Go</a></li>

@@ -7,7 +7,7 @@ import (
 
 //Task est un type qui contient la database.
 type Task struct {
-	DB *sql.DB
+	DB     *sql.DB
 	dbName string
 }
 

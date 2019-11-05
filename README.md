@@ -16,6 +16,23 @@ dodo allows the user the following functions to manage their tasks.
 
 just do it ;)
 
+## Install
+
+Check dependencies
+
+* cobra : go get -u github.com/spf13/cobra/cobra
+* viper : go get -u github.com/spf13/viper
+* go-sqlite: go get github.com/mattn/go-sqlite3
+
+You need a $GOBIN at go install !!! otherwise you have problems with db connection.
+
+see:
+
+```bash
+export GOBIN=$HOME/go/bin
+source .bash_profile
+```
+
 ## Licenses
 
 * [Go](https://golang.org/LICENSE)
@@ -24,3 +41,4 @@ just do it ;)
 * __dodo__ is released under the GNU General Public License. See [gpl-3.0.txt](./gpl-3.0.txt)
 
 <img src="gplv3-or-later.svg" />
+

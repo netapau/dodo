@@ -10,7 +10,7 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-// InitDB retourne la database todosDB.db
+// InitDB retourne la database tasks.db
 func InitDB() (*sql.DB, error) {
 	dir := os.Getenv("GOBIN")
 	db, err := sql.Open("sqlite3", filepath.Join(filepath.Dir(dir), "bin", "tasks.db"))
