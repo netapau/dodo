@@ -80,7 +80,7 @@ func init() {
 
 	rootCmd.PersistentFlags().StringVar(&developer, "developer", maintenant, "Developer name.")
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "./dodo.yaml", "config file (default is $HOME/.github.com/netapau/todo.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "./dodo.yaml", "config file (default is $HOME/.github.com/netapau/dodo.yaml)")
 	//rootCmd.PersistentFlags().StringVar(&task, "task", "Rien a faire", "Tâche a réaliser.")
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
