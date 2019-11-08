@@ -24,7 +24,7 @@ Check dependencies
 * viper : go get -u github.com/spf13/viper
 * go-sqlite: go get github.com/mattn/go-sqlite3
 
-You need a $GOBIN at go install !!! otherwise you have problems with db connection.
+You need a $GOBIN at go install !!! otherwise you have problems with database connection.
 
 see:
 
