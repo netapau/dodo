@@ -1,6 +1,6 @@
 # dodo
 
-Like a list of tasks of a rare extinct species...
+Like a list of tasks of a rare extinct species... [dodo](<https://fr.wikipedia.org/wiki/Dodo_(oiseau)>)
 
 __A CLI app__ in Go with SQLite.
 
