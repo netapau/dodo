@@ -40,4 +40,4 @@ source .bash_profile
 * [Cobra](https://github.com/spf13/cobra) : Cobra is released under the Apache 2.0 license. See LICENSE
 * __dodo__ is released under the GNU General Public License. See [gpl-3.0.txt](./gpl-3.0.txt)
 
-<img src="gplv3-or-later.svg" />
+![Alt gplv3-or-later](./gplv3-or-later.png?raw=true "gplv3")
