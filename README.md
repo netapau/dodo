@@ -41,4 +41,3 @@ source .bash_profile
 * __dodo__ is released under the GNU General Public License. See [gpl-3.0.txt](./gpl-3.0.txt)
 
 <img src="gplv3-or-later.svg" />
-
