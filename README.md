@@ -26,6 +26,7 @@ Check dependencies
 
 __go-sqlite3 and go modules__
 See for environment var GOPRIVATE here : [go-sqlite & GOPRIVATE](https://github.com/mattn/go-sqlite3/issues/755#issuecomment-555419067)
+
 [Go Documentation](https://golang.org/doc/go1.13)
 
 You need a $GOBIN at go install !!! otherwise you have problems with database connection.
