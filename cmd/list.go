@@ -58,9 +58,9 @@ var listCmd = &cobra.Command{
 
 		listTasks(endFlag)
 
-		developer, _ := rootCmd.Flags().GetString("developer")
-		if developer != "" {
-			fmt.Println("[Developer]:", developer)
+		time, _ := rootCmd.Flags().GetString("time")
+		if time != "" {
+			fmt.Println("[time]:", time)
 			fmt.Println("")
 		}
 	},

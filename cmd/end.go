@@ -22,16 +22,23 @@ var endCmd = &cobra.Command{
 			fmt.Println("Erreur en recuperant l'id de tâche !")
 		}
 
-		db, err := tasks.InitDB()
-		if err != nil {
-			log.Fatal(err)
-		}
-		task := tasks.NewTask(db)
+		if endFlag >= 1 {
 
-		result := make(chan string)
-		go task.End(endFlag, result)
-		r := <-result
-		fmt.Println(r)
+			db, err := tasks.InitDB()
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			task := tasks.NewTask(db)
+
+			result := make(chan string)
+			go task.End(endFlag, result)
+			r := <-result
+			fmt.Println(r)
+
+		} else {
+			fmt.Println("Vous devez passer le paramettre -i (identifiant) pour marquer une tâche terminée.\nExemple :\n$todo end -i 12 ")
+		}
 	},
 }
 
