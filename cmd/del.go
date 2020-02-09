@@ -17,14 +17,14 @@ var delCmd = &cobra.Command{
 	Long: `
 	Pour effacer une tâche de la liste vous devez entrer le n° de identification de tâche.
 	Exemple:
-	$dodo del 2
+	$dodo del -i 2
 	effacera la tâche numero 2 de la liste.
 	`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		id, _ := cmd.Flags().GetInt("id")
 
-		if id != 0 {
+		if id >= 1 {
 			fmt.Println("Effacer la tâche avec l'id " + strconv.Itoa(id) + " ? oui/non [o/n]")
 			if tools.Valid() == true {
 
@@ -41,12 +41,12 @@ var delCmd = &cobra.Command{
 			}
 
 		} else {
-			fmt.Println("Vous devez passer le paramettre id pour effacer une tâche\nExemple :\n$todo del -i 12 ")
+			fmt.Println("Vous devez passer le paramettre -i (identifiant) pour effacer une tâche\nExemple :\n$todo del -i 12 ")
 		}
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(delCmd)
-	delCmd.Flags().IntP("id", "i", 0, "id est le n° de la tâche a effacer.")
+	delCmd.Flags().IntP("id", "i", 0, "i est le n° de la tâche a effacer.")
 }

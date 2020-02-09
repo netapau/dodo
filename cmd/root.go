@@ -3,7 +3,6 @@ package cmd
 import (
 	"fmt"
 	"os"
-	"strconv"
 	"time"
 
 	"github.com/spf13/cobra"
@@ -22,7 +21,7 @@ const (
 )
 
 var cfgFile string
-var developer string
+var heure string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -50,9 +49,9 @@ var rootCmd = &cobra.Command{
 		fmt.Println("dodo, gestion de tâches !")
 		fmt.Println("Voir l'aide: dodo -h ")
 		fmt.Println(" ")
-		developer, _ := cmd.Flags().GetString("developer")
-		if developer != "" {
-			fmt.Println("[Developer]:", developer)
+		time, _ := cmd.Flags().GetString("time")
+		if time != "" {
+			fmt.Println("[time]", time)
 			fmt.Println("")
 		}
 	},
@@ -70,15 +69,11 @@ func Execute() {
 func init() {
 	cobra.OnInitialize(initConfig)
 
-	heure := time.Now()
-	h, m, _ := heure.Clock()
-	maintenant := strconv.Itoa(h) + ":" + strconv.Itoa(m) //+ ":" + strconv.Itoa(s)
-
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	rootCmd.PersistentFlags().StringVar(&developer, "developer", maintenant, "Developer name.")
+	rootCmd.PersistentFlags().StringVar(&heure, "time", time.Now().Format("15:04:05"), "Time.")
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "./dodo.yaml", "config file (default is $HOME/.github.com/netapau/dodo.yaml)")
 	//rootCmd.PersistentFlags().StringVar(&task, "task", "Rien a faire", "Tâche a réaliser.")
@@ -89,12 +84,6 @@ func init() {
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
-
-	// developer, _ := rootCmd.Flags().GetString("developer")
-	// if developer != "" {
-	// 	fmt.Println("[Developer]:", developer)
-	// 	fmt.Println("")
-	// }
 
 	if cfgFile != "" {
 		// Use config file from the flag.
