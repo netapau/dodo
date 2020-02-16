@@ -21,9 +21,9 @@ just do it ;)
 
 Check dependencies
 
-* cobra : go get -u github.com/spf13/cobra/cobra
-* viper : go get -u github.com/spf13/viper
-* go-sqlite: go get github.com/mattn/go-sqlite3
+* [cobra](https://github.com/spf13/cobra) : go get -u github.com/spf13/cobra/cobra
+* [viper](https://github.com/spf13/viper) : go get -u github.com/spf13/viper
+* [go-sqlite](github.com/mattn/go-sqlite3): go get github.com/mattn/go-sqlite3
 
 __go-sqlite3 and go modules__
 See for environment var GOPRIVATE here : [go-sqlite & GOPRIVATE](https://github.com/mattn/go-sqlite3/issues/755#issuecomment-555419067)

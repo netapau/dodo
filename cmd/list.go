@@ -42,7 +42,8 @@ func intToStr(finished int) string {
 
 // listCmd represents the list command.
 var listCmd = &cobra.Command{
-	Use:   "list",
+	Use: "list",
+
 	Short: "Liste les tâches dans la todo list.",
 	Long: `
 	Commande:
@@ -60,21 +61,26 @@ var listCmd = &cobra.Command{
 
 		time, _ := rootCmd.Flags().GetString("time")
 		if time != "" {
-			fmt.Println("[time]:", time)
+			fmt.Println(" ", time)
 			fmt.Println("")
 		}
+
 	},
+}
+
+func titleColor(titre string) {
+	c := color.New(color.FgCyan) // color
+	c.Println(titre)
+	c.DisableColor()
 }
 
 //listTasks liste les tâches TODO : simplifier !!!
 func listTasks(endFlag bool) {
 
 	if endFlag == false {
-		c := color.New(color.FgCyan) // color
-		c.Println(titleAllTasks)
-		c.DisableColor()
+		titleColor(titleAllTasks)
 	} else {
-		fmt.Println(titleEndTasks)
+		titleColor(titleEndTasks)
 	}
 
 	db, err := tasks.InitDB()
