@@ -1,3 +1,4 @@
+![Go](https://github.com/netapau/dodo/workflows/Go/badge.svg)
 # dodo
 
 Like a list of tasks of a rare extinct species... [dodo](<https://fr.wikipedia.org/wiki/Dodo_(oiseau)>)
