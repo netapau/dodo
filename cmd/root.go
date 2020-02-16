@@ -20,7 +20,7 @@ const (
 )
 
 var cfgFile string
-var heure string = time.Now().Format("15:04:05")
+var heure string
 var author string
 var license string
 
@@ -30,18 +30,19 @@ var rootCmd = &cobra.Command{
 	Short: "dodo permet de gérer une liste de tâches a éffectuer.",
 	Long: `
 ` + titleTodo + `
-  Par example:
-  $dodo add -t "Aujourd'hui : Faire quelque chose de bon pour l'humanité !"
+Examples:
+   Ajouter une tache :
+   $dodo add -t "Donner a manger au chat !"
 
-  Une fois vôtre tâche efectuée vous pouvez la cocher a l'aide de son n° de tâche:
-  $dodo end -i 2
+   Vôtre tâche effectuée, vous pouvez la marquer a l'aide de son n° de tâche :
+   $dodo end -i 2
 
-  Vous pouvez également supprimer des tâches de vôtre liste:
-  $dodo del -i 2
+   Supprimer la tâche avec l'identifiant '2' de vôtre liste :
+   $dodo del -i 2
 
-	Pour lister les tâches :
-	$dodo list
-	$dodo list -f (tâches finies)
+   Lister les tâches :
+   $dodo list    (toutes les tâches)
+   $dodo list -f (tâches finies)
   `,
 	// Uncomment the following line if your bare application has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
@@ -70,24 +71,20 @@ func Execute() {
 }
 
 func init() {
-
 	cobra.OnInitialize(initConfig)
 
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	rootCmd.PersistentFlags().StringVar(&heure, "time", time.Now().Format("15:04:05"), "Time.")
-	rootCmd.PersistentFlags().StringVar(&cfgFile,
+	rootCmd.Flags().StringVar(&heure, "time", time.Now().Format("15:04:05"), "Time.")
+	rootCmd.Flags().StringVar(&cfgFile,
 		"config",
 		"./dodo.yaml",
 		"config file (default is $HOME/.github.com/netapau/dodo.yaml)")
-	rootCmd.Flags().StringVar(&author, "author", "Tony Simoes", "Developpeur.")
-	rootCmd.Flags().StringVar(&license, "license", "GPLv3", "App license.")
 
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// Cobra also supports local flags, ex:
+	// rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
 // initConfig reads in config file and ENV variables if set.

@@ -56,37 +56,31 @@ var listCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
 		endFlag, _ := cmd.Flags().GetBool("fin")
-		//tmps, err := cmd.Flags().GetString("tmps")
-
-		// if err != nil {
-		// 	panic("mettez quelque chose dans le flag !!!")
-		// } else {
-		// 	fmt.Println(tmps)
-		// }
 
 		listTasks(endFlag)
 
 		time, _ := rootCmd.Flags().GetString("time")
-
 		if time != "" {
-			fmt.Println("[time]:", time)
+			fmt.Println(" ", time)
 			fmt.Println("")
-		} else {
-			fmt.Println("[time]:", "totor")
 		}
 
 	},
+}
+
+func titleColor(titre string) {
+	c := color.New(color.FgCyan) // color
+	c.Println(titre)
+	c.DisableColor()
 }
 
 //listTasks liste les tâches TODO : simplifier !!!
 func listTasks(endFlag bool) {
 
 	if endFlag == false {
-		c := color.New(color.FgCyan) // color
-		c.Println(titleAllTasks)
-		c.DisableColor()
+		titleColor(titleAllTasks)
 	} else {
-		fmt.Println(titleEndTasks)
+		titleColor(titleEndTasks)
 	}
 
 	db, err := tasks.InitDB()
@@ -118,5 +112,4 @@ func init() {
 	// $dodo list (liste toutes les tâches)
 	// $dodo list -f (liste les tâches finies)
 	listCmd.Flags().BoolP("fin", "f", false, "Tâches accomplies !!!")
-	//listCmd.Flags().String("tmps", time.Now().Format("15:04:05"), "Heure")
 }
