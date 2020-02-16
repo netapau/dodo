@@ -14,10 +14,6 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
-# Vscode : https://github.com/github/gitignore/tree/master/Global
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+# Vscode : 
+.vscode
 *.code-workspace
