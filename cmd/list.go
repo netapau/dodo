@@ -42,7 +42,8 @@ func intToStr(finished int) string {
 
 // listCmd represents the list command.
 var listCmd = &cobra.Command{
-	Use:   "list",
+	Use: "list",
+
 	Short: "Liste les tâches dans la todo list.",
 	Long: `
 	Commande:
@@ -55,14 +56,25 @@ var listCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
 		endFlag, _ := cmd.Flags().GetBool("fin")
+		//tmps, err := cmd.Flags().GetString("tmps")
+
+		// if err != nil {
+		// 	panic("mettez quelque chose dans le flag !!!")
+		// } else {
+		// 	fmt.Println(tmps)
+		// }
 
 		listTasks(endFlag)
 
 		time, _ := rootCmd.Flags().GetString("time")
+
 		if time != "" {
 			fmt.Println("[time]:", time)
 			fmt.Println("")
+		} else {
+			fmt.Println("[time]:", "totor")
 		}
+
 	},
 }
 
@@ -106,4 +118,5 @@ func init() {
 	// $dodo list (liste toutes les tâches)
 	// $dodo list -f (liste les tâches finies)
 	listCmd.Flags().BoolP("fin", "f", false, "Tâches accomplies !!!")
+	//listCmd.Flags().String("tmps", time.Now().Format("15:04:05"), "Heure")
 }
