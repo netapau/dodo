@@ -25,21 +25,23 @@ var delCmd = &cobra.Command{
 		id, _ := cmd.Flags().GetInt("id")
 
 		if id >= 1 {
-			fmt.Println("Effacer la tâche avec l'id " + strconv.Itoa(id) + " ? oui/non [o/n]")
-			if tools.Valid() == true {
-
-				db, err := tasks.InitDB()
-				if err != nil {
-					log.Fatal(err)
-				}
-				task := tasks.NewTask(db)
-
-				result := make(chan string)
-				go task.Del(id, result) // Delete task.
-				r := <-result
-				fmt.Println(r)
+			db, err := tasks.InitDB()
+			if err != nil {
+				log.Fatal(err)
 			}
-
+			task := tasks.NewTask(db)
+			verify := make(chan bool)
+			go task.Exists(id, verify)
+			v := <-verify
+			if v == true {
+				fmt.Println("Effacer la tâche avec l'id " + strconv.Itoa(id) + " ? oui/non [o/n]")
+				if tools.UserValidation() == true {
+					result := make(chan string)
+					go task.Del(id, result) // Delete task.
+					r := <-result
+					fmt.Println(r)
+				}
+			}
 		} else {
 			fmt.Println("Vous devez passer le paramettre -i (identifiant) pour effacer une tâche\nExemple :\n$todo del -i 12 ")
 		}
@@ -48,5 +50,5 @@ var delCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(delCmd)
-	delCmd.Flags().IntP("id", "i", 0, "i est le n° de la tâche a effacer.")
+	delCmd.Flags().IntP("id", "i", 0, "-i est le n° de la tâche a effacer.")
 }
