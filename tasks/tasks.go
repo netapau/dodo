@@ -13,46 +13,12 @@ type Task struct {
 	dbName string
 }
 
-// //Exist return true if task exists.
-// func (task *Task) Exists(idTask int) bool {
-
-// 	// , result chan bool
-// 	var verif bool = false
-// 	fmt.Println("Entrée verif = :", verif)
-
-// 	stmt, _ := task.DB.Prepare(`
-// 		SELECT * FROM tasks WHERE id=(?);
-// 	`)
-
-// 	err := stmt.QueryRow(stmt, idTask).Scan(&idTask)
-
-// 	if err != nil {
-// 		if err != sql.ErrNoRows {
-// 			//TODO://log.Print(err)
-// 			//verif = false
-// 		}
-// 		//result <- false
-// 		//verif = false
-// 	} else {
-// 		verif = true
-// 	}
-// 	//task.DB.Close()
-
-// 	//result <- true
-
-// 	fmt.Println("Sortie verif = :", verif)
-// 	return (verif)
-// }
-
-//Exist check if task exists.
+//Exist check if task exists. true if exists, otherwise false.
 func (task *Task) Exists(idTask int, result chan bool) {
-
 	stmt, _ := task.DB.Prepare(`
 		SELECT id FROM tasks WHERE id=(?);
 	`)
-
 	err := stmt.QueryRow(idTask).Scan(&idTask)
-
 	if err != nil {
 		if err != sql.ErrNoRows {
 			log.Println(err)
