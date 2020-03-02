@@ -2,6 +2,8 @@ package tasks
 
 import (
 	"database/sql"
+	"fmt"
+	"log"
 	"strconv"
 )
 
@@ -9,6 +11,56 @@ import (
 type Task struct {
 	DB     *sql.DB
 	dbName string
+}
+
+// //Exist return true if task exists.
+// func (task *Task) Exists(idTask int) bool {
+
+// 	// , result chan bool
+// 	var verif bool = false
+// 	fmt.Println("Entrée verif = :", verif)
+
+// 	stmt, _ := task.DB.Prepare(`
+// 		SELECT * FROM tasks WHERE id=(?);
+// 	`)
+
+// 	err := stmt.QueryRow(stmt, idTask).Scan(&idTask)
+
+// 	if err != nil {
+// 		if err != sql.ErrNoRows {
+// 			//TODO://log.Print(err)
+// 			//verif = false
+// 		}
+// 		//result <- false
+// 		//verif = false
+// 	} else {
+// 		verif = true
+// 	}
+// 	//task.DB.Close()
+
+// 	//result <- true
+
+// 	fmt.Println("Sortie verif = :", verif)
+// 	return (verif)
+// }
+
+//Exist check if task exists.
+func (task *Task) Exists(idTask int, result chan bool) {
+
+	stmt, _ := task.DB.Prepare(`
+		SELECT id FROM tasks WHERE id=(?);
+	`)
+
+	err := stmt.QueryRow(idTask).Scan(&idTask)
+
+	if err != nil {
+		if err != sql.ErrNoRows {
+			log.Println(err)
+		}
+		fmt.Println("On ne peut effacer la tache avec l'id", idTask, "car elle n'existe pas.")
+		result <- false
+	}
+	result <- true
 }
 
 //End marque une tâche terminée avec une ID passée en paramèttre.
@@ -23,7 +75,6 @@ func (task *Task) End(idTask int, result chan string) {
 	}
 	task.DB.Close()
 	result <- "La tâche avec l'id n° " + strconv.Itoa(idTask) + " a été marquée comme étant terminée"
-
 }
 
 //Del efface une tâche avec une ID passée en paramèttre.

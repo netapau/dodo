@@ -8,8 +8,8 @@ import (
 	"strings"
 )
 
-// Valid confirm user condition with "yes" or "Yes" otherwise not valid.
-func Valid() bool {
+// UserValidation confirm user condition with "yes" or "Yes" otherwise not valid.
+func UserValidation() bool {
 	ok := false
 	r := bufio.NewReader(os.Stdin)
 	//rp := regexp.MustCompile("^[Y|y]$|^[Y|y]es$") // US
